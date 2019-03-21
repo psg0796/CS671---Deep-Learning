@@ -165,17 +165,22 @@ def main():
     model = Model(input_size, output_classes)
     num_of_training_data = np.size(X_train, 0)
     accuracy = [1, 2, 3]
-    print("Training..................................")
+    resultFile = open("results.txt", "a")
+    resultFile.write("Training..................................\n")
+    resultFile.close()
     for j in range(32):
         for i in range(num_of_training_data):
             input = X_train[i]
             target = encode(y_train[i])
             accuracy.append(model.train(np.matrix([input]), np.matrix([target])))
+        print(j)
     train_acc = np.average(accuracy[np.size(accuracy) - 10000:])
     accuracy = []
-    print("Training accuracy \t",train_acc * 100)
+    resultFile = open("results.txt", "a")
+    resultFile.write("Training accuracy \t",train_acc * 100)
 
-    print("Validatin..................................")
+    resultFile.write("Validatin..................................\n")
+    resultFile.close()
     for i in range(np.size(X_val, 0)):
         input = X_val[i]
         target = y_val[i]
@@ -186,9 +191,11 @@ def main():
         accuracy.append(acc)
     val_acc = np.average(accuracy)
     accuracy = []
-    print("Validation accuracy \t", val_acc * 100)
+    resultFile = open("results.txt", "a")
+    resultFile.write("Validation accuracy \t", val_acc * 100)
 
-    print("Testing..................................")    
+    resultFile.write("Testing..................................\n")    
+    resultFile.close()
     for i in range(np.size(X_test, 0)):
         input = X_test[i]
         target = y_test[i]
@@ -199,7 +206,9 @@ def main():
         accuracy.append(acc)
     test_acc = np.average(accuracy)
     accuracy = []
-    print("Test accuracy \t", test_acc * 100)
+    resultFile = open("results.txt", "a")
+    resultFile.write("Test accuracy \t", test_acc * 100)
+    resultFile.close()
 
 
 if __name__ == "__main__":
