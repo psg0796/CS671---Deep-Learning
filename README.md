@@ -1,3 +1,4 @@
+# Assignment 1
 This project is the solution for CS671(IIT Mandi) Assignment 1.
 
 ## Problem Statement
