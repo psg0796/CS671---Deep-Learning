@@ -1,5 +1,5 @@
 ## Project
-* [Final Project](/Final\ Project/README.md)
+* [Final Project](/FinalProject/README.md)
 
 ## Assignments
 * [Assignment1](/Assignment1/README.md)
