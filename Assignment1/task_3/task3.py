@@ -174,7 +174,7 @@ def main():
             target = encode(y_train[i])
             accuracy.append(model.train(np.matrix([input]), np.matrix([target])))
         accuracyFile = open("accuracy.txt", "a")
-        accuracyFile.write("epoch " + str(j) + " acc " + str(np.average(accuracy[np.size(accuracy) - 10000:]) + "\n"))
+        accuracyFile.write("epoch " + str(j) + " acc " + str(np.average(accuracy[np.size(accuracy) - 10000:])) + "\n")
         accuracyFile.close()
         print(j)
     train_acc = np.average(accuracy[np.size(accuracy) - 10000:])
