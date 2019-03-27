@@ -2,13 +2,15 @@ import tensorflow as tf
 mnist = tf.keras.datasets.mnist
 
 (x_train, y_train),(x_test, y_test) = mnist.load_data()
+x_train = x_train.reshape(x_train.shape[0], 28, 28, 1)
+x_test = x_test.reshape(x_test.shape[0], 28, 28, 1)
 x_train, x_test = x_train / 255.0, x_test / 255.0
 y_train_length = y_train
 y_train_width = y_train
 y_train_color = y_train
 y_train_angle = y_train
 
-inputs = tf.keras.layers.Input(shape=(28, 28), name='inputs')
+inputs = tf.keras.layers.Input(shape=(28, 28, 1), name='inputs')
 
 feature_map = tf.keras.layers.MaxPool2D()(
 	tf.keras.layers.Conv2D(32, (3, 3), activation='elu')(
@@ -26,9 +28,9 @@ outputs = [output_length, output_width, output_color, output_angle]
 model = tf.keras.Model(inputs=inputs, outputs=outputs)
 
 model.compile(optimizer='adam',
-  loss={'output_length': 'categoriacal_crossentropy',
-   'output_width': 'categoriacal_crossentropy',
-   'output_color': 'categoriacal_crossentropy',
+  loss={'output_length': 'categorical_crossentropy',
+   'output_width': 'categorical_crossentropy',
+   'output_color': 'categorical_crossentropy',
    'output_angle': 'categorical_crossentropy'},
   metrics=['accuracy'])
 
