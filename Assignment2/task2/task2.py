@@ -18,10 +18,8 @@ y_test_angle = y_train
 inputs = tf.keras.layers.Input(shape=(28, 28, 1), name='inputs')
 
 feature_map = tf.keras.layers.MaxPool2D()(
-	tf.keras.layers.Conv2D(32, (3, 3), activation='relu')(
-		tf.keras.layers.MaxPool2D()(
 			tf.keras.layers.Conv2D(32, (3, 3), activation='relu')(
-				inputs))))
+				inputs))
 
 output_length = tf.keras.layers.Dense(10, activation='softmax', name='output_length')(tf.keras.layers.Dropout(0.2)(tf.keras.layers.Dense(128, activation='elu')(tf.keras.layers.Flatten()(feature_map))))
 output_width = tf.keras.layers.Dense(10, activation='softmax', name='output_width')(tf.keras.layers.Dropout(0.2)(tf.keras.layers.Dense(128, activation='elu')(tf.keras.layers.Flatten()(feature_map))))
@@ -32,7 +30,7 @@ outputs = [output_length, output_width, output_color, output_angle]
 
 model = tf.keras.Model(inputs=inputs, outputs=outputs)
 
-model.compile(optimizer='rmsprop',
+model.compile(optimizer='adam',
   loss={'output_length': 'sparse_categorical_crossentropy',
    'output_width': 'sparse_categorical_crossentropy',
    'output_color': 'sparse_categorical_crossentropy',
