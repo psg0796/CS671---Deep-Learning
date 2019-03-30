@@ -30,7 +30,7 @@ for angle_iterator in range(angle):
 			for color_iterator in range(color):
 				for variation_iterator in range(variation):
 					imgFile = str(angle_iterator) + '_' + str(length_iterator) + '_' + str(width_iterator) + '_' + str(color_iterator) + '_' + str(variation_iterator) + '.' + imgFmt
-					if variation_iterator < 700:
+					if variation_iterator > 700:
 						x_test.append(cv2.imread(imgDir + imgFile))
 						y_length_test.append(length_iterator)
 						y_width_test.append(width_iterator)
