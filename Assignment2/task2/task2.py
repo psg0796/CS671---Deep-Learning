@@ -46,24 +46,24 @@ def plot_history(history):
 	plt.legend()
 	plt.savefig(model_dir+'/acc_plot_'+model_name)
 
-################################ For MNIST dataset ##########################################################
-# 																											#
-# 	mnist = tf.keras.datasets.mnist 																		#
-#	(x_train, y_train),(x_test, y_test) = mnist.load_data()													#
-# 	x_train = x_train.reshape(x_train.shape[0], 28, 28, 1)													#
-# 	x_test = x_test.reshape(x_test.shape[0], 28, 28, 1)														#
-# 	x_train, x_test = x_train / 255.0, x_test / 255.0														#
-# 																											#
-# 	y_train_length = y_train 																				#
-# 	y_train_width = y_train 																				#
-# 	y_train_color = y_train 																				#
-# 	y_train_angle = y_train 																				#
-# 	y_test_length = y_train 																				#
-# 	y_test_width = y_train 																					#
-# 	y_test_color = y_train 																					#
-# 	y_test_angle = y_train 																					#
-#																											#
-#############################################################################################################
+###################################### For MNIST dataset ################################################
+# 													#
+# 	mnist = tf.keras.datasets.mnist 								#
+#	(x_train, y_train),(x_test, y_test) = mnist.load_data()						#
+# 	x_train = x_train.reshape(x_train.shape[0], 28, 28, 1)						#
+# 	x_test = x_test.reshape(x_test.shape[0], 28, 28, 1)						#
+# 	x_train, x_test = x_train / 255.0, x_test / 255.0						#
+# 													#
+# 	y_train_length = y_train 									#
+# 	y_train_width = y_train 									#
+# 	y_train_color = y_train 									#
+# 	y_train_angle = y_train 									#
+# 	y_test_length = y_train 									#
+# 	y_test_width = y_train 										#
+# 	y_test_color = y_train 										#
+# 	y_test_angle = y_train 										#
+#													#
+#########################################################################################################
 
 (x_train, y_train_length, y_train_width, y_train_color, y_train_angle) = (np.load(inputPath + 'x_train.npy'), np.load(inputPath + 'y_train_length.npy'), np.load(inputPath + 'y_train_width.npy'), np.load(inputPath + 'y_train_color.npy'), np.load(inputPath + 'y_train_angle.npy'))
 (x_test, y_test_length, y_test_width, y_test_color, y_test_angle) = (np.load(inputPath + 'x_test.npy'), np.load(inputPath + 'y_test_length.npy'), np.load(inputPath + 'y_test_width.npy'), np.load(inputPath + 'y_test_color.npy'), np.load(inputPath + 'y_test_angle.npy'))
