@@ -8,6 +8,7 @@ model_dir = 'model7'
 os.mkdir(model_dir)
 epoch = 20
 model_name = 'epoch_' + str(epoch) + '_conv(32,(3,3),relu)_batchNorm_maxPool((2,2),2)_(relu,relu,relu,relu)_(128,128,128,256)_(sigmoid,sigmoid,sigmoid,softmax).png'
+inputPath = 'inputData/'
 
 def plot_history(history):
 	hist = pd.DataFrame(history.history)
@@ -64,8 +65,8 @@ def plot_history(history):
 #																											#
 #############################################################################################################
 
-(x_train, y_train_length, y_train_width, y_train_color, y_train_angle) = (np.load('inputData/x_train.npy'), np.load('inputData/y_train_length.npy'), np.load('inputData/y_train_width.npy'), np.load('inputData/y_train_color.npy'), np.load('inputData/y_train_angle.npy'))
-(x_test, y_test_length, y_test_width, y_test_color, y_test_angle) = (np.load('inputData/x_test.npy'), np.load('inputData/y_test_length.npy'), np.load('inputData/y_test_width.npy'), np.load('inputData/y_test_color.npy'), np.load('inputData/y_test_angle.npy'))
+(x_train, y_train_length, y_train_width, y_train_color, y_train_angle) = (np.load(inputPath + 'x_train.npy'), np.load(inputPath + 'y_train_length.npy'), np.load(inputPath + 'y_train_width.npy'), np.load(inputPath + 'y_train_color.npy'), np.load(inputPath + 'y_train_angle.npy'))
+(x_test, y_test_length, y_test_width, y_test_color, y_test_angle) = (np.load(inputPath + 'x_test.npy'), np.load(inputPath + 'y_test_length.npy'), np.load(inputPath + 'y_test_width.npy'), np.load(inputPath + 'y_test_color.npy'), np.load(inputPath + 'y_test_angle.npy'))
 
 inputs = tf.keras.layers.Input(shape=(28, 28, 3), name='inputs')
 
