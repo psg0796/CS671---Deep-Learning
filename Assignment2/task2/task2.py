@@ -94,7 +94,7 @@ model_history = model.fit(x_train, {
 	'output_width': y_train_width,
 	'output_color': y_train_color,
 	'output_angle': y_train_angle
-	}, validation_split = 0.1, epochs=epoch)
+	}, epochs=epoch)
 
 plot_history(model_history)
 

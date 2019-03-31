@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 model_dir = 'model'
-epoch = 2
+epoch = 5
 model_name = 'epoch_' + str(epoch) + '_conv(32,(7,7),relu)_batchNorm_maxPool((2,2),2)_(relu)_(1024)_(softmax).png'
 
 def plot_history(history):
@@ -22,27 +22,8 @@ def plot_history(history):
     plt.legend()
     plt.savefig(model_dir+'/learning_curve_'+model_name)
 
-################################ For MNIST dataset ##########################################################
-# 																											#
-# 	mnist = tf.keras.datasets.mnist 																		#
-#	(x_train, y_train),(x_test, y_test) = mnist.load_data()													#
-# 	x_train = x_train.reshape(x_train.shape[0], 28, 28, 1)													#
-# 	x_test = x_test.reshape(x_test.shape[0], 28, 28, 1)														#
-# 	x_train, x_test = x_train / 255.0, x_test / 255.0														#
-# 																											#
-# 	y_train_length = y_train 																				#
-# 	y_train_width = y_train 																				#
-# 	y_train_color = y_train 																				#
-# 	y_train_angle = y_train 																				#
-# 	y_test_length = y_train 																				#
-# 	y_test_width = y_train 																					#
-# 	y_test_color = y_train 																					#
-# 	y_test_angle = y_train 																					#
-#																											#
-#############################################################################################################
-
-(x_train, y_train) = (np.load('x_train.npy'), np.load('y_train.npy'))
-(x_test, y_test) = (np.load('x_test.npy'), np.load('y_test.npy'))
+(x_train, y_train) = (np.load('input/x_train.npy'), np.load('input/y_train.npy'))
+(x_test, y_test) = (np.load('input/x_test.npy'), np.load('input/y_test.npy'))
 
 inputs = tf.keras.layers.Input(shape=(28, 28, 3), name='inputs')
 
@@ -60,7 +41,7 @@ model.compile(optimizer='adam',
   metrics=['accuracy'])
 
 print("#############################################				Training				##############################################")
-model_history = model.fit(x_train, y_train, validation_split = 0.1, epochs=epoch)
+model_history = model.fit(x_train, y_train, epochs=epoch)
 
 plot_history(model_history)
 
