@@ -2,13 +2,13 @@ import tensorflow as tf
 import numpy as np
 import sklearn
 
-filepath = 'drive/My Drive/task2/model25/model'
+filepath = 'model6/model'
 
 model = tf.keras.models.load_model(
     filepath,
     compile=True
 )
-inputPath = 'drive/My Drive/task2/inputData/'
+inputPath = 'inputData/'
 
 (x_train, y_train_length, y_train_width, y_train_color, y_train_angle) = (np.load(inputPath + 'x_train.npy'), np.load(inputPath + 'y_train_length.npy'), np.load(inputPath + 'y_train_width.npy'), np.load(inputPath + 'y_train_color.npy'), np.load(inputPath + 'y_train_angle.npy'))
 (x_test, y_test_length, y_test_width, y_test_color, y_test_angle) = (np.load(inputPath + 'x_test.npy'), np.load(inputPath + 'y_test_length.npy'), np.load(inputPath + 'y_test_width.npy'), np.load(inputPath + 'y_test_color.npy'), np.load(inputPath + 'y_test_angle.npy'))
@@ -24,6 +24,7 @@ for res0 in res:
 	for res1 in res0:
 		predictions[i].append(np.argmax(res1))
 	i = i + 1
+sess = tf.Session()
 with sess.as_default():
   for i in range(4):
     labels_each_head = labels[i]
@@ -40,5 +41,5 @@ with sess.as_default():
 	  average = 'micro'
     )
 
-np.save('inputData/cnf_mtx',np.asarray(cnf_mtx))
-np.save('inputData/f1_score',np.asarray(f1_score))
+np.save('cnf_mtx',np.asarray(cnf_mtx))
+np.save('f1_score',np.asarray(f1_score))
