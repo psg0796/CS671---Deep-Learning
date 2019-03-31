@@ -2,8 +2,10 @@ import tensorflow as tf
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+import os
 
-model_dir = 'model5'
+model_dir = 'model7'
+os.mkdir(model_dir)
 epoch = 20
 model_name = 'epoch_' + str(epoch) + '_conv(32,(3,3),relu)_batchNorm_maxPool((2,2),2)_(relu,relu,relu,relu)_(128,128,128,256)_(sigmoid,sigmoid,sigmoid,softmax).png'
 
