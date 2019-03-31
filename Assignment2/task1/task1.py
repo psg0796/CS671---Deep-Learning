@@ -18,7 +18,7 @@ def plot_history(history):
            label='Loss')
     plt.plot(hist['epoch'], hist['acc'],
            label='Acc')
-    plt.ylim([-1,2])
+    plt.ylim([0,1])
     plt.legend()
     plt.savefig(model_dir+'/learning_curve_'+model_name)
 
