@@ -33,7 +33,7 @@ with sess.as_default():
                 layerActivation = layer(input_data_head[j])
                 input_data_head[j] = layerActivation
                 activation_head[j].append(layerActivation.eval())
-        activation.append(activaion_head)
+        activation.append(activation_head)
         cum_activation.append(activation)
 
 np.save('cummulative_activation',np.asarray(cum_activation))
