@@ -15,7 +15,7 @@ with sess.as_default():
         filepath,
         compile=True
     )
-    for i in range(6):
+    for k in range(6):
         activation = []
         activation_head = [[],[],[],[]]
         s = random.randint(0, 57598)
