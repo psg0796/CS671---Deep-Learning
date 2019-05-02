@@ -3,6 +3,8 @@ import numpy as np
 import os
 import dataGenerator
 import sys, getopt
+import prediction
+import time
 
 localDataDir = "localData/"
 inputNpyFileName = "input"
@@ -57,14 +59,12 @@ def testing(x, y):
 		})
 
 def main(argv):
-	os.popen("rm -rf " + localDataDir)
-	os.popen("mkdir " + localDataDir)
 	opts, args = getopt.getopt(argv,"hp:e:",["help","phase=","epochs="])
 	for opt, arg in opts:
 		if opt == '-h' or opt == '--help':
 			print('test.py -p <phase> -e <epoch>')
 			print('test.py --phase=<phase> --epochs=<epoch>')
-			print('phase can be "training" or "testing"')
+			print('phase can be "training" or "testing" or "predict"')
 			sys.exit()
 		elif opt in ("-p", "--phase"):
 			phase = arg
@@ -72,15 +72,26 @@ def main(argv):
 			epoch = arg
 	
 	inputDir = input("Enter the input diretory path : ")
-	dataGenerator.generateNpyDataFromInput(inputDir, localDataDir, inputNpyFileName, outputLabelsNpyFileName)
-
-	x = np.load(localDataDir + inputNpyFileName + ".npy")
-	y = np.load(localDataDir + outputLabelsNpyFileName + ".npy")
 
 	if phase == "training":
+		os.popen("rm -rf " + localDataDir)
+		os.popen("mkdir " + localDataDir)
+		time.sleep(1)
+		dataGenerator.generateNpyDataFromInput(inputDir, localDataDir, inputNpyFileName, outputLabelsNpyFileName)
+		x = np.load(localDataDir + inputNpyFileName + ".npy")
+		y = np.load(localDataDir + outputLabelsNpyFileName + ".npy")
 		training(x, y, epoch)
+
 	elif phase == "testing":
+		dataGenerator.generateNpyDataFromInput(inputDir, localDataDir, inputNpyFileName, outputLabelsNpyFileName)
+		x = np.load(localDataDir + inputNpyFileName + ".npy")
+		y = np.load(localDataDir + outputLabelsNpyFileName + ".npy")
 		testing(x, y)
+
+	elif phase == "predict":
+		os.popen("mkdir " + localDataDir + "prediction")
+		time.sleep(1)
+		prediction.predict(localDataDir + 'model', inputDir, localDataDir + 'prediction/', localDataDir)
 	
 if __name__ == '__main__':
 	if(len(sys.argv) == 1):
