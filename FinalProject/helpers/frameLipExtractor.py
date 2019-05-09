@@ -1,3 +1,15 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[90]:
+
+
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[173]:
+
+
 import cv2
 import numpy as np
 import dlib
@@ -7,10 +19,8 @@ from skimage import io
 import numpy
 from PIL import Image, ImageDraw
 
-outputDir = '../input/lipVideoFrames/'
-
-def outputGenerator(input = "/home/psg/Desktop/Screenshot from 2019-05-04 18-25-26.png"):
-	gray = cv2.imread(input)
+def lipExtractor(inputNpy):
+	gray = inputNpy
 
 	detector = dlib.get_frontal_face_detector()
 	predictor = dlib.shape_predictor("shape_predictor_68_face_landmarks copy.dat")
@@ -36,12 +46,10 @@ def outputGenerator(input = "/home/psg/Desktop/Screenshot from 2019-05-04 18-25-
 	    b.append(a)
 	c = np.array(b).reshape((-1,1,2))
 	cv2.polylines(gray,[c],True,(0,255,255))
-	# cv2.imwrite("rohan.png",gray)
 	q  = list(zip(s,t))
-	print(q)
-
+	
 	# read image as RGB and add alpha (transparency)
-	im = Image.open(input).convert("RGBA")
+	im = Image.fromarray(gray).convert('RGBA')
 
 	# convert to numpy (for convenience)
 	imArray = numpy.asarray(im)
@@ -61,11 +69,7 @@ def outputGenerator(input = "/home/psg/Desktop/Screenshot from 2019-05-04 18-25-
 
 	# transparency (4th column)
 	newImArray[:,:,3] = mask*255
-
-	# back to Image from numpy
-	newIm = Image.fromarray(newImArray, "RGBA")
-	
-	newIm.save(outputDir + input.split("/")[-1])
+	return newImArray
 
 if __name__ == '__main__':
-	outputGenerator()
+	lipExtractor()
