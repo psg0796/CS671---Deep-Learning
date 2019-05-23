@@ -1,5 +1,4 @@
 from moviepy.editor import *
-#import matplotlib.pyplot as plt
 import numpy as np
 import glob
 import frameLipExtractor
