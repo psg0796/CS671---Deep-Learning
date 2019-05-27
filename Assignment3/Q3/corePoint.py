@@ -69,7 +69,7 @@ def main(argv):
 		elif opt in ("-p", "--phase"):
 			phase = arg
 		elif opt in ("-e", "--epoch"):
-			epoch = arg
+			epoch = int(arg)
 	
 	inputDir = input("Enter the input diretory path : ")
 
