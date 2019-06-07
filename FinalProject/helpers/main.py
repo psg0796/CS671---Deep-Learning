@@ -29,7 +29,7 @@ def main():
 	landmark = np.load('../input/landmark/0.npy')
 	baseImage = np.load('../input/baseImage/0.npy')
 	videoGt = np.load('../input/videoGt/0.npy')
-	X = [landmark, baseImage]
+	X = {'landmark': landmark, 'baseImage': baseImage}
 	Y = videoGt
 	EPOCH = 5
 	trainGenerator(X, Y, EPOCH)
