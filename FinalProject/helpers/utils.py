@@ -54,16 +54,16 @@ def get_landmark(inputImg):
 
 def video2landmarkNpy(videoPath):
 	vidObj = cv2.VideoCapture(videoPath)
-		success = 1
-		count = 0
-		landmarks = []
-			
-		while success:
-			success, image = vidObj.read()
-			if success != 1:
-				break
-			count += 1
-			print(count)
-			landmarks.append(get_landmark(image))
+	success = 1
+	count = 0
+	landmarks = []
+		
+	while success:
+		success, image = vidObj.read()
+		if success != 1:
+			break
+		count += 1
+		print(count)
+		landmarks.append(get_landmark(image))
 
 	return np.asarray(landmarkSequence)

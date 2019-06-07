@@ -1,4 +1,4 @@
-from moviepy.editor import *
+# from moviepy.editor import *
 import numpy as np
 import glob
 import cv2
@@ -22,6 +22,8 @@ def video2frame():
 		while success:
 			success, image = vidObj.read()
 			if success != 1:
+				break
+			if count == 1000:
 				break
 			count += 1
 			frame_output_path = inputDir + 'frames/'
