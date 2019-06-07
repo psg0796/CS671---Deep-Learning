@@ -3,7 +3,11 @@ import dlib
 import cv2
 import numpy as np
 
-# Source :- https://towardsdatascience.com/facial-mapping-landmarks-with-dlib-python-160abcf7d672
+from gtts import gTTS 
+import os 
+
+# Source get_landmark() :- https://towardsdatascience.com/facial-mapping-landmarks-with-dlib-python-160abcf7d672
+# Source text2speech() :- geeksforgeeks
 
 # Vamos inicializar um detector de faces (HOG) para então
 # let's go code an faces detector(HOG) and after detect the 
@@ -35,3 +39,15 @@ def get_landmark(inputImg):
 			cv2.circle(output, (x, y), 2, (0, 255, 0), -1)
 
 	return output
+
+def text2speech(mytext):
+	# Language in which you want to convert 
+	language = 'en'
+
+	# Passing the text and language to the engine,  
+	# here we have marked slow=False. Which tells  
+	# the module that the converted audio should  
+	# have a high speed 
+	myobj = gTTS(text=mytext, lang=language, slow=False) 
+
+	myobj.save("Jhajju.mp3") 

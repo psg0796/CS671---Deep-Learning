@@ -18,6 +18,7 @@ def video2frame():
 
 		audio_frame = []
 		video_frame = []
+		landmarks = []
 		step = 10
 		preT = 0
 		for t in range(int(duration / step)): # runs through audio/video frames obtaining them by timestamp with step 100 msec
@@ -34,6 +35,7 @@ def video2frame():
 				np.save(inputDir + 'audioGt/' + str(videoCount),np.asarray(audio_frame))
 				audio_frame = []
 				video_frame = []
+				landmarks = []
 				videoCount = videoCount + 1
 				print("########################" + str(videoCount) + "########################")
 
