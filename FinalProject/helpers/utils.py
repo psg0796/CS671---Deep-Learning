@@ -3,8 +3,8 @@ import dlib
 import cv2
 import numpy as np
 
-from gtts import gTTS 
-import os 
+# from gtts import gTTS 
+# import os 
 
 # Source get_landmark() :- https://towardsdatascience.com/facial-mapping-landmarks-with-dlib-python-160abcf7d672
 # Source text2speech() :- geeksforgeeks
@@ -40,14 +40,30 @@ def get_landmark(inputImg):
 
 	return output
 
-def text2speech(mytext):
-	# Language in which you want to convert 
-	language = 'en'
+# def text2speech(mytext):
+# 	# Language in which you want to convert 
+# 	language = 'en'
 
-	# Passing the text and language to the engine,  
-	# here we have marked slow=False. Which tells  
-	# the module that the converted audio should  
-	# have a high speed 
-	myobj = gTTS(text=mytext, lang=language, slow=False) 
+# 	# Passing the text and language to the engine,  
+# 	# here we have marked slow=False. Which tells  
+# 	# the module that the converted audio should  
+# 	# have a high speed 
+# 	myobj = gTTS(text=mytext, lang=language, slow=False) 
 
-	myobj.save("Jhajju.mp3") 
+# 	myobj.save("Hello.mp3") 
+
+def video2landmarkNpy(videoPath):
+	vidObj = cv2.VideoCapture(videoPath)
+		success = 1
+		count = 0
+		landmarks = []
+			
+		while success:
+			success, image = vidObj.read()
+			if success != 1:
+				break
+			count += 1
+			print(count)
+			landmarks.append(get_landmark(image))
+
+	return np.asarray(landmarkSequence)
