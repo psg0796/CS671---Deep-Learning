@@ -16,10 +16,9 @@ def getModel():
 	batchNormalization_2 = tf.keras.layers.BatchNormalization()(conv2DTrans_1)
 	conv2DTrans_2 = tf.keras.layers.Conv2DTranspose(3, (5, 5))(batchNormalization_2)
 	dropOut_1 = tf.keras.layers.Dropout(0.5)(conv2DTrans_2)
-	conv2DTrans_3 = tf.keras.layers.Conv2DTranspose(3, (5, 5))(dropOut_1)
-	relu_1 = tf.keras.layers.ReLU()(conv2DTrans_3)
-
-	model = tf.keras.Model(inputs = [landmark, baseImage], outputs = relu_1)
+	conv2DTrans_3 = tf.keras.layers.Conv2DTranspose(3, (5, 5), activation='sigmoid')(dropOut_1)
+	
+	model = tf.keras.Model(inputs = [landmark, baseImage], outputs = conv2DTrans_3)
 
 	model.compile(optimizer='adam', loss='mse', metrics=['accuracy'])
 
