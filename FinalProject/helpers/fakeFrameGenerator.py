@@ -3,7 +3,7 @@ import numpy as np
 
 def getModel():
 	landmark = tf.keras.layers.Input(shape=(240, 320, 3), name='landmark')
-	baseImage = tf.keras.layers.Input(shape=(240, 320, 3), name='baseImage')
+	baseImage = tf.keras.layers.Input(shape=(240, 320, 6), name='baseImage')
 
 	conv2D_pre_1 = tf.keras.layers.Conv2D(128, (7, 7), activation='relu')(baseImage)
 	maxpool_pre_1 = tf.keras.layers.MaxPool2D(pool_size=(5, 5))(conv2D_pre_1)

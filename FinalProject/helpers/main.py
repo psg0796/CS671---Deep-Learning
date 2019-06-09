@@ -41,8 +41,8 @@ def main():
 	videoGt = np.load('../input/videoGt/0.npy')/255.0
 	X = {'landmark': landmark, 'baseImage': baseImage}
 	Y = videoGt
-	EPOCH = 20
-	modelPath = 'models/fakeFrameGenerator/1560009272/'
+	EPOCH = 5
+	modelPath = 'models/fakeFrameGenerator/R10/'
 	trainGenerator(X, Y, EPOCH, load, modelType, modelPath)
 
 if __name__ == '__main__':

@@ -3,6 +3,7 @@ import numpy as np
 import glob
 import cv2
 import utils
+import random
 
 inputDir = '../input/'
 video_path = inputDir + 'videos/'
@@ -23,7 +24,7 @@ def video2frame():
 			success, image = vidObj.read()
 			if success != 1:
 				break
-			if count == 1000:
+			if count == 4000:
 				break
 			count += 1
 			frame_output_path = inputDir + 'frames/'
@@ -48,13 +49,13 @@ def video2frame():
 		np.save(inputDir + 'landmark/' + str(videoCount),np.asarray(landmarks))
 		np.save(inputDir + 'videoGt/' + str(videoCount),np.asarray(video_frame))
 		videoLen = len(video_frame)
-		middleFrame = video_frame[videoLen//2]
-		video_frame = []
-		landmarks = []
 		baseImage = []
 		for i in range(videoLen):
-			baseImage.append(middleFrame)
+			bsImg = video_frame[random.randint(200,3000)]
+			baseImage.append(np.concatenate((bsImg, utils.get_landmark(bsImg)), axis=2))
 		np.save(inputDir + 'baseImage/' + str(videoCount),np.asarray(baseImage))
+		video_frame = []
+		landmarks = []
 		baseImage = []
 					# np.save(inputDir + 'audioGt/' + str(videoCount),np.asarray(audio_frame))
 					# audio_frame = []
